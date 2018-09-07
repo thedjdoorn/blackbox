@@ -26,7 +26,7 @@ BLACKBOXDATA_CANDIDATES=(
 : "${EDITOR:=vi}" ;
 
 # Allow overriding gpg command
-: "${GPG:=gpg2}" ;
+: "${GPG:=gpg}" ;
 
 function physical_directory_of() {
   local d=$(dirname "$1")
@@ -260,7 +260,7 @@ function decrypt_file() {
 
   old_umask=$(umask)
   umask "$DECRYPT_UMASK"
-  $GPG --use-agent -q --decrypt -o "$unencrypted" "$encrypted" >&2
+  $GPG --use-agent -q --decrypt --no-tty -o "$unencrypted" "$encrypted" >&2
   umask "$old_umask"
 }
 
@@ -282,7 +282,7 @@ function decrypt_file_overwrite() {
 
   old_umask=$(umask)
   umask "$DECRYPT_UMASK"
-  $GPG --use-agent --yes -q --decrypt -o "$unencrypted" "$encrypted" >&2
+  $GPG --use-agent --no-tty --yes -q --decrypt -o "$unencrypted" "$encrypted" >&2
   umask "$old_umask"
 
   new_hash=$(md5sum_file "$unencrypted")
