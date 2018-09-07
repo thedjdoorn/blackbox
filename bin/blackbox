@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# This script aliases the blackbox command with a verb to the other commands
+
+case "$1" in
+    # addadmin) exec "blackbox_addadmin $2" ;;
+    # cat) exec "b"
+    # decrypt_all_files)
+    # deregister_file)
+    # diff)
+    list_files) blackbox_list_files;;
+    *) echo 'not supported yet';;
+esac
