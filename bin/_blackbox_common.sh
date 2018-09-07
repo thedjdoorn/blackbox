@@ -26,7 +26,7 @@ BLACKBOXDATA_CANDIDATES=(
 : "${EDITOR:=vi}" ;
 
 # Allow overriding gpg command
-: "${GPG:=gpg2 --no-tty}" ;
+: "${GPG:=gpg2}" ;
 
 function physical_directory_of() {
   local d=$(dirname "$1")
