@@ -26,7 +26,7 @@ BLACKBOXDATA_CANDIDATES=(
 : "${EDITOR:=vi}" ;
 
 # Allow overriding gpg command
-: "${GPG:=gpg}" ;
+: "${GPG:=gpg2 --no-tty}" ;
 
 function physical_directory_of() {
   local d=$(dirname "$1")
@@ -200,7 +200,7 @@ function prepare_keychain() {
 function add_filename_to_cryptlist() {
   # If the name is already on the list, this is a no-op.
   # However no matter what the datestamp is updated.
-  
+
   # https://github.com/koalaman/shellcheck/wiki/SC2155
   local name
   name=$(vcs_relative_path "$1")
@@ -334,7 +334,7 @@ function enumerate_subdirs() {
     done
   done <"$listfile" | sort -u
 }
- 
+
 
 # chdir to the base of the repo.
 function change_to_vcs_root() {
@@ -433,7 +433,7 @@ function cp_permissions() {
       else
         chmod --reference "$1" "${@:2}"
       fi
-      ;; 
+      ;;
     * )
       echo 'ERROR: Unknown OS. Exiting. (cp_permissions)'
       exit 1
